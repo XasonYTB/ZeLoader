@@ -6,7 +6,7 @@ local supportedGames = {
 
 local function loadScript(url)
     local success, result = pcall(function()
-        return loadstring(game:HttpGet(url))()
+        loadstring(url)()
     end)
     
     if not success then
@@ -18,7 +18,6 @@ local function loadScript(url)
         })
     end
 end
-
 if supportedGames[gameId] then
     game.StarterGui:SetCore("SendNotification", {
         Title = "Script Hub",
