@@ -1,12 +1,20 @@
+-- Script Hub Loader
+-- Detects game ID and loads the appropriate script
+
 local gameId = game.PlaceId
 
+-- Table of supported games with their script URLs
 local supportedGames = {
-    [6839171747] = "https://raw.githubusercontent.com/username/repo/main/DoorsHotel",
+    [6839171747] = "https://raw.githubusercontent.com/XasonYTB/ZeScript-Doors/refs/heads/main/Doors",
+    -- Add more games here in the format:
+    -- [PLACE_ID] = "SCRIPT_URL",
 }
 
+-- Function to load the script
 local function loadScript(url)
     local success, result = pcall(function()
-        loadstring(url)()
+        local code = game:HttpGet(url)  -- Added HttpGet to fetch the code
+        loadstring(code)()
     end)
     
     if not success then
@@ -16,8 +24,16 @@ local function loadScript(url)
             Text = "Failed to load script!",
             Duration = 5
         })
+    else
+        game.StarterGui:SetCore("SendNotification", {
+            Title = "Script Hub",
+            Text = "Script loaded successfully!",
+            Duration = 3
+        })
     end
 end
+
+-- Check if the current game has a script
 if supportedGames[gameId] then
     game.StarterGui:SetCore("SendNotification", {
         Title = "Script Hub",
@@ -25,8 +41,10 @@ if supportedGames[gameId] then
         Duration = 3
     })
     
+    -- Load the appropriate script
     loadScript(supportedGames[gameId])
 else
+    -- Game not supported
     game.StarterGui:SetCore("SendNotification", {
         Title = "Script Hub",
         Text = "This game is not supported yet!",
