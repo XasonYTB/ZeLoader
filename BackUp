@@ -71,7 +71,7 @@ local gameId = game.PlaceId
 
 -- Table of supported games with their script URLs
 local supportedGames = {
-    [6839171747] = "https://raw.githubusercontent.com/XasonYTB/ZeScript-Doors/refs/heads/main/Doors",
+    [6839171747] = "https://raw.githubusercontent.com/ZeScript/Doors-Test/refs/heads/main/VersionTesting",
     -- Add more games here in the format:
     -- [PLACE_ID] = "SCRIPT_URL",
 }
